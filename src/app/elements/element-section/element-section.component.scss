@@ -1,0 +1,19 @@
+.containerImagenes{
+    margin-top: 24px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    .imagenesItem{
+        width: 200px;
+        border: 1px solid #ededed;
+        border-radius: 8px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            min-height: 275px;
+            object-fit: contain;
+
+        }
+    }
+}

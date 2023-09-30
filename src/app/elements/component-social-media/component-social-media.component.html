@@ -1,0 +1,63 @@
+<div class="containerAddSocial">
+    <h4>Agregar nueva red</h4>
+    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+        <div fxFlex.gt-md="24" fxFlex="100">
+            <div class="iconContainer">
+                <img [src]="icon" alt="">
+                <div class="m-t-20">
+                    <button (click)="addImageIcon()" mat-raised-button mat-button color="primary">Agregar Icono</button>
+                </div>                 
+            </div>
+        </div>
+
+        <div fxFlex.gt-md="74" fxFlex="100">
+            <form [formGroup]="formy" (ngSubmit)="addSocialMedia()">
+                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div fxFlex.gt-md="49" fxFlex="100">
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Título</mat-label>
+                                <input type="text" matInput formControlName="title" placeholder="">
+                                <mat-error *ngIf="formy.get('title').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Descripcion</mat-label>
+                                <input type="text" matInput formControlName="description" placeholder="">
+                                <mat-error *ngIf="formy.get('description').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div> 
+                    </div>
+    
+                    <div fxFlex.gt-md="49" fxFlex="100">
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Link</mat-label>
+                                <input type="text" matInput formControlName="url" placeholder="">
+                                <mat-error *ngIf="formy.get('url').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+    
+                </div>
+    
+    
+                <div style="text-align: end;" class="m-t-20">
+                    <button  [disabled]="!cambiosRealizados" type="submit"   mat-raised-button mat-button color="primary">Guardar cambios</button>
+                    <button type="button" style="margin-left: 8px;" (click)="deleteSocialMedia()" mat-raised-button mat-button color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>   
+    
+            </form>   
+
+        </div>
+    </div>
+</div>

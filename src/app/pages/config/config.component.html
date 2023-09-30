@@ -1,0 +1,21 @@
+
+<mat-card>
+    <mat-card-content>
+        <div class="sliderItem">
+
+                <div class="datosPersonales" style="display: flex; justify-content: flex-start; align-items: center;" >
+                    <mat-icon>perm_identity</mat-icon>
+                    <h4 style="margin-left: 8px;">Cofiguracion general del sitio</h4>
+                </div>
+                
+                <app-element-logo (dataEvent)="handleDataLogo($event)"  [data]="dataLogo"  ></app-element-logo>
+                <app-element-social-media (dataEvent)="handleDataSocialMedia($event)"  [data]="dataSocialMedia"  ></app-element-social-media>
+
+                <div style="text-align: end;" class="m-t-20">
+                    <button  mat-raised-button mat-button color="primary">Guardar cambios</button>
+                </div>   
+                
+
+        </div>
+    </mat-card-content>
+</mat-card>

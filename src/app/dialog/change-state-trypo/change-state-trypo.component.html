@@ -1,0 +1,57 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>Cambio de estado</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="formy" (ngSubmit)="send( formy )">
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="state" placeholder="Seleccione">
+                    <mat-option *ngFor="let state of states" [value]="state">
+                        {{ state.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formy.controls['state'].hasError('required') && formy.controls['state'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input" *ngIf="dataDialog.type === 'TRANSFERENCIA BANCARIA' && formy.controls['state'].value.id === 2">
+            <mat-form-field appearance="outline">
+                <mat-label>Código de transferencia</mat-label>
+                <input matInput formControlName="code">
+                <mat-error *ngIf="formy.controls['code'].hasError('required') && formy.controls['code'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input" *ngIf="dataDialog.type === 'TRANSFERENCIA BANCARIA' && formy.controls['state'].value.id === 2">
+            <mat-form-field appearance="outline" (click)="DATEIN.open()">
+                <mat-label>Fecha de transferencia</mat-label>
+                <input matInput formControlName="date" [matDatepicker]="DATEIN" (focus)="DATEIN.open()" (keydown)="returnFalse($event)">
+                <mat-datepicker #DATEIN></mat-datepicker>
+                <mat-error *ngIf="formy.controls['date'].hasError('required') && formy.controls['date'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+
+        <div class="mb-input" *ngIf="formy.controls['state'].value.id === 3">
+            <mat-form-field appearance="outline">
+                <mat-label>Motivo</mat-label>
+                <textarea rows="4" matInput formControlName="reason"></textarea>
+                <mat-error *ngIf="formy.controls['reason'].hasError('required') && formy.controls['reason'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
+            <button color="primary" mat-raised-button type="submit" [disabled]="!formy.valid">Enviar</button>
+        </mat-dialog-actions>
+    </form>
+</mat-card>

@@ -1,0 +1,42 @@
+
+
+figure {
+    margin: 0
+}
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.images {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    .imageOrigin {
+        width: 65%;
+    }
+    .imageResult {
+        width: 32%;
+    }
+}
+
+.imageCurrent {
+    max-width: 300px;
+    margin: 0 auto 20px auto;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    .avatar {
+        width: 250px;
+        height: 250px;
+        border-radius: 300px;
+        margin: 0 auto 20px auto;
+        background-color: #eaeaea;
+        img {
+            cursor: pointer;
+        }
+    }
+}
+h3 {
+    margin: 0 0 20px 0;
+}

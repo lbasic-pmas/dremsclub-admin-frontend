@@ -1,0 +1,33 @@
+
+
+.botonesFiltro {
+    display: flex;
+    flex-wrap: nowrap;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    z-index: 999;
+
+    .btn {
+        margin: 0 0 0 15px ;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        font-size: 14px;
+        padding: 6px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        user-select: none;
+        mat-icon {
+            margin: 0 10px 0 0;
+        }
+        &.btnFiltrar {
+            background-color: #bc9a36;
+            color: #221F20;
+        }
+        &.btnLimpiar {
+            background-color: #F4AD3B;
+            color: #221F20;
+        }
+    }
+}

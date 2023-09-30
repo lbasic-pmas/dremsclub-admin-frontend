@@ -1,0 +1,62 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Elemento Menu Botones</h2>
+        <form [formGroup]="formy" >
+            <h4>Caracteristicas</h4>
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                
+                <div fxFlex.gt-md="30"
+                fxFlex.gt-xs="100"
+                fxFlex="100">
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Tamaño</mat-label>
+                            <mat-select formControlName="fontSize">
+                            <mat-option *ngFor="let data of fontSize" [value]="data">
+                                {{data}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxFlex.gt-md="30"
+                fxFlex.gt-xs="100"
+                fxFlex="100">
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Peso </mat-label>
+                            <mat-select formControlName="weight">
+                            <mat-option *ngFor="let data of fontWeight" [value]="data">
+                                {{data}}
+                            </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div fxFlex.gt-md="30"
+                fxFlex.gt-xs="100"
+                fxFlex="100">
+                <div class="mb-input">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Color</mat-label>
+                        <input matInput [ngxMatColorPicker]="picker" formControlName="color">
+                    <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                    <ngx-mat-color-picker #picker [touchUi]="touchUi" [color]="color"></ngx-mat-color-picker>
+                    </mat-form-field>
+                </div>
+                </div>
+
+                <p><mat-checkbox formControlName="active">Mostrar en web</mat-checkbox></p>
+
+            </div>
+
+
+
+            <div style="text-align: end;" class="m-t-20">
+                <button [disabled]="!cambiosRealizados" (click)="onSubmited()" mat-raised-button mat-button color="primary">Guardar cambios</button>
+            </div>   
+        </form>         
+    </mat-card-content>
+</mat-card>

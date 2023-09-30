@@ -1,0 +1,40 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>Fechas para filtrar</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="formy" (ngSubmit)="send( formy )">
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+
+            <div fxFlex.gt-xs="48" fxFlex="100">
+                <div class="mb-input">
+                    <mat-form-field appearance="outline" (click)="DATEIN.open()">
+                        <mat-label>Fecha desde</mat-label>
+                        <input matInput formControlName="dateIn" [matDatepicker]="DATEIN" (focus)="DATEIN.open()" (keydown)="returnFalse($event)">
+                        <mat-datepicker #DATEIN></mat-datepicker>
+                        <mat-error *ngIf="formy.controls['dateIn'].hasError('required') && formy.controls['dateIn'].touched">
+                            Campo es requerido.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxFlex.gt-xs="48" fxFlex="100">
+                <div class="mb-input">
+                    <mat-form-field appearance="outline" (click)="DATEOUT.open()">
+                        <mat-label>Fecha hasta</mat-label>
+                        <input matInput formControlName="dateOut" [matDatepicker]="DATEOUT" (focus)="DATEOUT.open()" (keydown)="returnFalse($event)">
+                        <mat-datepicker #DATEOUT></mat-datepicker>
+                        <mat-error *ngIf="formy.controls['dateOut'].hasError('required') && formy.controls['dateOut'].touched">
+                            Campo es requerido.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
+            <button color="primary" mat-raised-button type="button" [disabled]="!formy.valid" (click)="sendSelect( 'Filtrar' )">Filtrar</button>
+            <button color="primary" mat-raised-button type="button" [disabled]="!formy.valid" (click)="sendSelect( 'FiltrarDescargar' )">Filtrar y descargar</button>
+        </mat-dialog-actions>
+    </form>
+</mat-card>

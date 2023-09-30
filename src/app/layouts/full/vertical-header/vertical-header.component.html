@@ -1,0 +1,7 @@
+
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
+  <img [src]="user.AVATAR" alt="user" class="profile-pic" />
+</button>
+<mat-menu #profile="matMenu" class="mymegamenu">
+  <button mat-menu-item (click)="closeSession()"><mat-icon>exit_to_app</mat-icon> Cerrar Sesión</button>
+</mat-menu>

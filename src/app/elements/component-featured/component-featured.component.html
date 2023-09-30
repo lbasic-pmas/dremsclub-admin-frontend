@@ -1,0 +1,48 @@
+<div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+    <div fxFlex.gt-md="25" fxFlex="100">
+        <div class="containerImagenes">
+            <div class="imgDescktop">
+                <h4>Icono</h4>
+                <img class="" [src]="icon" alt="">    
+                <div class="m-t-20">
+                    <button (click)="addImageIcon()" mat-raised-button mat-button color="primary">Agregar</button>
+                </div>                 
+            </div>
+        </div>
+    </div>
+    <div fxFlex.gt-md="74" fxFlex="100">
+        <form [formGroup]="formy"  >
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <div  fxFlex.gt-md="49" fxFlex="100">
+                    <h4>Titulo</h4>
+                    <div style="height: 100px; margin-bottom: 32px;">
+                        <quill-editor formControlName="title" [modules]="modulesQuill"  >
+                          </quill-editor>
+                    </div>
+
+                </div>
+
+                <div fxFlex.gt-md="49"  fxFlex="100">
+                    <h4>Subtítulo1</h4>
+                    <div style="height: 100px; margin-bottom: 32px;">
+                        <quill-editor formControlName="subTitle1" [modules]="modulesQuill" >
+                          </quill-editor>
+                    </div>
+                </div>
+
+                <div fxFlex.gt-md="49"  fxFlex="100">
+                    <h4>Subtítulo2</h4>
+                    <div style="height: 100px; margin-bottom: 32px;">
+                        <quill-editor formControlName="subTitle2" [modules]="modulesQuill" >
+                          </quill-editor>
+                    </div>
+                </div>
+            </div>
+        </form>   
+    </div>
+
+    <div class="m-t-20" style="text-align: end;">
+        <button  [disabled]="!cambiosRealizados" (click)="onSubmited()" type="button"   mat-raised-button mat-button color="primary">Guardar cambios</button>
+        <button style="margin-left: 8px;" (click)="deleteElement()" mat-raised-button mat-button color="warn">Eliminar</button>
+    </div> 
+</div>

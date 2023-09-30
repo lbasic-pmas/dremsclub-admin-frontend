@@ -1,0 +1,136 @@
+<div fxLayout="row wrap" *ngIf="chargeStatus">
+
+    <div fxFlex.gt-md="33.3" fxFlex.gt-xs="50" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <div class="d-flex no-block">
+                    <div class="m-r-10 no-shrink">
+                        <button mat-fab mat-card-icon class="shadow-none">
+                          <mat-icon> layers</mat-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="m-0">{{data.length}}</h3>
+                        <h6 class="text-muted m-0">Total de paginas</h6>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div fxFlex.gt-md="33.3" fxFlex.gt-xs="50" fxFlex="100">
+      <mat-card>
+          <mat-card-content>
+              <div class="d-flex no-block">
+                  <div class="m-r-10 no-shrink">
+                      <button mat-fab color="accent" mat-card-icon class="shadow-none">
+                          <mat-icon> layers</mat-icon>
+                      </button>
+                  </div>
+                  <div>
+                      <h3 class="m-0">{{ data.length}}</h3>
+                      <h6 class="text-muted m-0">Paginas activas</h6>
+                  </div>
+              </div>
+          </mat-card-content>
+      </mat-card>
+  </div>
+
+    <div fxFlex.gt-md="33.3" fxFlex.gt-xs="50" fxFlex="100">
+        <mat-card>
+            <mat-card-content>
+                <div class="d-flex no-block">
+                    <div class="m-r-10 no-shrink">
+                        <button mat-fab mat-card-icon class="shadow-none">
+                            <mat-icon> layers_clear</mat-icon>
+                        </button>
+                    </div>
+                    <div>
+                        <h3 class="m-0">{{ data.length }}</h3>
+                        <h6 class="text-muted m-0">Paginas inactivas</h6>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+
+</div>
+  
+
+
+<mat-card>
+    <mat-card-content>
+      <div class="conteTabla">
+        <div class="tabla">
+
+          <ngx-datatable
+            #table
+            class="material"
+            [rows]="rows"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [columnMode]="'force'"
+            [externalPaging]="true"
+            [count]="page.totalElements"
+            [offset]="page.pageNumber"
+            [limit]="page.size"
+            (page)="setPage($event)"
+            >
+
+            <ngx-datatable-column [canAutoResize]="false" [width]="50" name="#" >
+              <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" let-rowIndex='rowIndex' ngx-datatable-cell-template>
+                {{  ( page.size * page.pageNumber ) + ( rowIndex  ) + 1 }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [canAutoResize]="false" [width]="120" name="Estado" >
+              <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div class="text-center">
+                  <mat-slide-toggle #slideToggle (change)="changeStatus( slideToggle , row )" [checked]="row.status" [disabled]="false"></mat-slide-toggle>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+      
+            <ngx-datatable-column [canAutoResize]="false" [width]="115" name="Acciones">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <button class="iconAction btnEdit" (click)="edit( row )" title="Editar">
+                  <mat-icon mat-list-icon>mode_edit</mat-icon>
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+  
+  
+            <ngx-datatable-column [minWidth]="200" name="Título">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.name }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [minWidth]="200" name="Url">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.url }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+    </mat-card-content>
+</mat-card>

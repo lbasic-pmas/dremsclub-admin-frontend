@@ -1,0 +1,59 @@
+<mat-card>
+    <mat-card-content>
+        <h4>Agregar nueva pagina</h4>   
+        <form [formGroup]="formy" >
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <div fxFlex="100">
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Título de la pagina</mat-label>
+                            <input matInput formControlName="title">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </form>         
+    </mat-card-content>
+</mat-card>
+
+<ng-container *ngFor="let item of elements; let i=index">
+    <app-element-slider *ngIf="item.elementType === 'app-element-slider'" (dataEvent)="handleData($event, i)"  [data]="item.data"  ></app-element-slider>
+    <app-element-section *ngIf="item.elementType === 'app-element-section'" (dataEvent)="handleData($event, i)"  [data]="item.data"  ></app-element-section>
+    <app-element-menu-buttons *ngIf="item.elementType === 'app-element-menu-buttons'" (dataEvent)="handleData($event, i)"  [data]="item.data" ></app-element-menu-buttons>
+    <app-element-article *ngIf="item.elementType === 'app-element-article'" (dataEvent)="handleData($event, i)"  [data]="item.data" ></app-element-article>
+    <app-element-cards *ngIf="item.elementType === 'app-element-cards'" (dataEvent)="handleData($event, i)"  [data]="item.data" ></app-element-cards>
+    <app-element-featured *ngIf="item.elementType === 'app-element-featured'" (dataEvent)="handleData($event, i)"  [data]="item.data" ></app-element-featured>
+</ng-container>
+
+
+<mat-card>
+    <mat-card-content>
+        <h4>Agregar un elemento a la pagina</h4>
+        <form [formGroup]="formy2">
+            <div fxLayout="row wrap">
+                <div fxFlex.gt-md="49"
+                    fxFlex.gt-xs="100"
+                    fxFlex="100">
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Elemento</mat-label>
+                            <mat-select formControlName="element">
+                                <mat-option *ngFor="let data of elemntType" [value]="data.component">
+                                    {{data.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="m-t-20">
+                <button (click)="addElement()" mat-raised-button mat-button color="primary">Agregar</button>
+            </div> 
+        </form>         
+    </mat-card-content>
+</mat-card>
+
+
+
+   

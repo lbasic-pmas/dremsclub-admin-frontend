@@ -1,0 +1,87 @@
+<mat-card>
+    <mat-card-content>
+      <form [formGroup]="formy" (ngSubmit)="send()">
+        <div class="headButtons">
+          <div class="buttonAdd">
+            <button mat-raised-button color="primary" class="btn-block btn-lg" type="button" (click)="add()">
+              Agregar Pagina
+            </button>
+          </div>
+        </div>
+      </form>
+  
+      <div class="conteTabla">
+        <div class="tabla">
+
+          <ngx-datatable
+            #table
+            class="material"
+            [rows]="rows"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [columnMode]="'force'"
+            [externalPaging]="true"
+            [count]="page.totalElements"
+            [offset]="page.pageNumber"
+            [limit]="page.size"
+            (page)="setPage($event)"
+            >
+
+            <ngx-datatable-column [canAutoResize]="false" [width]="50" name="#" >
+              <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" let-rowIndex='rowIndex' ngx-datatable-cell-template>
+                {{  ( page.size * page.pageNumber ) + ( rowIndex  ) + 1 }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [canAutoResize]="false" [width]="120" name="Estado" >
+              <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <div class="text-center">
+                  <mat-slide-toggle #slideToggle (change)="changeStatus( slideToggle , row )" [checked]="row.status" [disabled]="false"></mat-slide-toggle>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+      
+            <ngx-datatable-column [canAutoResize]="false" [width]="115" name="Acciones">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                  {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <button class="iconAction btnEdit" (click)="edit( row )" title="Editar">
+                  <mat-icon mat-list-icon>mode_edit</mat-icon>
+                </button>
+              </ng-template>
+            </ngx-datatable-column>
+  
+  
+            <ngx-datatable-column [minWidth]="200" name="Título">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.name }}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column [minWidth]="200" name="Url">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                {{ column.name }}
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{ row.url }}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+
+
+        </div>
+      </div>
+    </mat-card-content>
+</mat-card>
+  

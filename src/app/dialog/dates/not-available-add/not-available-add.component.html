@@ -1,0 +1,43 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>Nuevo periodo no disponible</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="formy" (ngSubmit)="send( formy )">
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngIf="formy.controls['title'].hasError('required') && formy.controls['title'].touched">
+                    Campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline" (click)="DATEIN.open()">
+                <mat-label>Fecha desde</mat-label>
+                <input matInput formControlName="dateIn" [matDatepicker]="DATEIN" (focus)="DATEIN.open()" (keydown)="returnFalse($event)">
+                <mat-datepicker #DATEIN></mat-datepicker>
+                <mat-error *ngIf="formy.controls['dateIn'].hasError('required') && formy.controls['dateIn'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline" (click)="DATEOUT.open()">
+                <mat-label>Fecha hasta</mat-label>
+                <input matInput formControlName="dateOut" [matDatepicker]="DATEOUT" (focus)="DATEOUT.open()" (keydown)="returnFalse($event)">
+                <mat-datepicker #DATEOUT></mat-datepicker>
+                <mat-error *ngIf="formy.controls['dateOut'].hasError('required') && formy.controls['dateOut'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
+            <button color="primary" mat-raised-button type="submit" [disabled]="!formy.valid">Agregar</button>
+        </mat-dialog-actions>
+    </form>
+</mat-card>

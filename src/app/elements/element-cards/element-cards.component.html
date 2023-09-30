@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Elemento Cards</h2>
+        <ng-container *ngFor="let item of elementos; let i=index">
+            <app-component-cards (dataEvent)="handleDataCards($event, i)" [data]="item"></app-component-cards>
+        </ng-container>
+        
+        
+
+        
+        <div class="m-t-20" style="text-align: end;">
+            <button (click)="addElement()" mat-raised-button mat-button color="primary">Agregar nuevo elemento</button>
+            <button style="margin-left: 8px;" (click)="deleteElement()" mat-raised-button mat-button color="warn">Eliminar</button>
+        </div> 
+
+    </mat-card-content>
+</mat-card>

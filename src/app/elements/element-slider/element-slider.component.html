@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Elemento Slider Banner</h2>
+        <ng-container *ngFor="let item of sliders; let i=index">
+            <app-component-slider-item (dataEvent)="handleDataSliders($event, i)" [data]="item"></app-component-slider-item>
+        </ng-container>
+        
+        
+
+        
+        <div class="m-t-20" style="text-align: end;">
+            <button (click)="addSlider()" mat-raised-button mat-button color="primary">Agregar nuevo slide</button>
+            <button style="margin-left: 8px;" (click)="deleteElement()" mat-raised-button mat-button color="warn">Eliminar</button>
+        </div> 
+
+    </mat-card-content>
+</mat-card>

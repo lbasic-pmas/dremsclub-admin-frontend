@@ -1,0 +1,93 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>Nuevo Partner</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="formy" (ngSubmit)="send( formy )">
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="formy.controls['name'].hasError('required') && formy.controls['name'].touched">
+                    Campo es requerido
+                </mat-error>
+                <mat-error *ngIf="formy.controls['name'].hasError('minlength') && formy.controls['name'].touched">
+                    Mínimo de 3 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Apellidos</mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error *ngIf="formy.controls['lastName'].hasError('required') && formy.controls['lastName'].touched">
+                    Campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Correo</mat-label>
+                <input matInput type="email" formControlName="email" />
+                <mat-error *ngIf="formy.controls['email'].hasError('required') && formy.controls['email'].touched">
+                    Campo es requerido.
+                </mat-error>
+                <mat-error *ngIf="formy.controls['email'].hasError('email') && formy.controls['email'].touched">
+                    Email no válido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput type="password" formControlName="password">
+                <mat-error *ngIf="formy.controls['password'].hasError('required') && formy.controls['password'].touched">
+                    Campo es requerido.
+                </mat-error>
+                <mat-error *ngIf="formy.controls['password'].hasError('minlength') && formy.controls['password'].touched">
+                    Mínimo de 6 caracteres
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Código País</mat-label>
+                <mat-select formControlName="codeCountry" placeholder="Seleccione">
+                    <mat-option *ngFor="let code of listCodeCountry" [value]="code">
+                        {{ code }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formy.controls['codeCountry'].hasError('required') && formy.controls['codeCountry'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="phone">
+                <mat-error *ngIf="formy.controls['phone'].hasError('required') && formy.controls['phone'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Descripción</mat-label>
+                <textarea rows="4" matInput formControlName="description"></textarea>
+                <mat-error *ngIf="formy.controls['description'].hasError('required') && formy.controls['description'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <mat-dialog-actions align="end">
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
+            <button color="primary" mat-raised-button type="submit" [disabled]="!formy.valid">Agregar</button>
+        </mat-dialog-actions>
+    </form>
+</mat-card>

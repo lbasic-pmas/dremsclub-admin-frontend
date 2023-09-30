@@ -1,0 +1,59 @@
+
+.cuenta {
+    padding: 10px 10px 0 10px;
+    border-radius: 5px;
+    border: 1px solid #c2c2c2;
+    margin: 0 0 10px 0;
+    .colum {
+        border: 1px solid #c2c2c2;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
+        .label {
+            color: #646464;
+
+        }
+        .txt {
+            font-size: 14px;
+            padding: 0 10px;
+            line-height: 1.1;
+        }
+        &.acciones {
+            border: none;
+            text-align: right;
+        }
+    }
+    &.active {
+        border-color: #bc9a36;
+    }
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+    margin: 0 auto 15px auto;
+    background-color: #eaeaea;
+    position: relative;
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 150px;
+    }
+    .btnEdit {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 8px;
+        border-radius: 20px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 1;
+        cursor: pointer;
+        background-color: #ffc107;
+        color: #ffffff;
+    }
+}

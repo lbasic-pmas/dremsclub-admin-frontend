@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Elemento Redes sociales</h2>
+
+        <ng-container *ngFor="let item of socialMedia; let i=index" >
+            <app-component-social-media (dataEvent)="handleSocialMedia($event, i)"  [data]="item"></app-component-social-media>
+        </ng-container>
+        
+
+        <div style="text-align: end;" class="m-t-20">
+            <button (click)="addSocialMedia()" mat-raised-button mat-button color="primary">Agregar nueva red</button>
+        </div>    
+
+    </mat-card-content>
+</mat-card>

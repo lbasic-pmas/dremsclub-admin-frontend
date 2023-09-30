@@ -1,0 +1,110 @@
+
+<mat-card>
+    <mat-card-content>
+        <div class="sliderItem">
+            <form style="width: 100%;" [formGroup]="formy" >
+                <div class="datosPersonales" style="display: flex; justify-content: flex-start; align-items: center;" >
+                    <mat-icon>perm_identity</mat-icon>
+                    <h4 style="margin-left: 8px;">Mis Datos</h4>
+                </div>
+                <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div fxFlex.gt-md="49" fxFlex="100"> 
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nombre</mat-label>
+                                <input type="text" matInput formControlName="name" placeholder="">
+                                <mat-error *ngIf="formy.get('name').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>   
+                    </div>
+        
+                    <div fxFlex.gt-md="49" fxFlex="100"> 
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Apellido</mat-label>
+                                <input type="text" matInput formControlName="lastName" placeholder="">
+                                <mat-error *ngIf="formy.get('lastName').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>   
+                    </div>
+        
+                    <div fxFlex.gt-md="49" fxFlex="100"> 
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput formControlName="email" placeholder="">
+                                <mat-error *ngIf="formy.get('email').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                            </mat-form-field>
+                        </div>   
+                    </div>
+                </div>
+        
+        
+                <h4>Cambiar contraseña</h4>
+        
+                <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div fxFlex.gt-md="49" fxFlex="100"> 
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Contraseña</mat-label>
+                                <input  [type]="hide ? 'password' : 'text'" matInput formControlName="password" placeholder="Contraseña">
+                                <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="formy.get('password').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                              </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div fxFlex.gt-md="49" fxFlex="100"> 
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nueva contraseña</mat-label>
+                                <input  [type]="hide ? 'password' : 'text'" matInput formControlName="newPassword" placeholder="Nueva contraseñ">
+                                <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="formy.get('newPassword').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                              </mat-form-field>
+                        </div>
+                    </div>
+        
+        
+                    <div fxFlex.gt-md="49" fxFlex="100"> 
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Repita nueva contraseña</mat-label>
+                                <input  [type]="hide ? 'password' : 'text'" matInput formControlName="newPasswordRepeat" placeholder="Repita nueva contraseña">
+                                <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error *ngIf="formy.get('newPasswordRepeat').hasError('required')">
+                                    Campo es requerido
+                                </mat-error>
+                              </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+        
+                <div style="text-align: end;" class="m-t-20">
+                    <button [disabled]="!cambiosRealizados" (click)="onSubmited()" mat-raised-button mat-button color="primary">Guardar cambios</button>
+                </div>   
+                
+            </form>   
+        </div>
+    </mat-card-content>
+</mat-card>

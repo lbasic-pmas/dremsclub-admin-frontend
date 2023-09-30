@@ -1,0 +1,81 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Elemento Logo</h2>
+        <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+            <div fxFlex.gt-md="49" fxFlex="100">
+                <div class="iconContainer">
+                    <img [src]="logoWeb" alt="">
+                    <div class="m-t-20">
+                        <button (click)="addLogoWeb()" mat-raised-button mat-button color="primary">Agregar logo web</button>
+                    </div>                 
+                </div>
+            </div>
+
+            <div fxFlex.gt-md="49" fxFlex="100">
+                <div class="iconContainer">
+                    <img [src]="logoMobile" alt="">
+                    <div class="m-t-20">
+                        <button (click)="addLogoMobile()" mat-raised-button mat-button color="primary">Agregar logo mobile</button>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <form [formGroup]="formy" >
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <div fxFlex.gt-md="49" fxFlex="100">
+                    <h4>Datos Logo 1</h4>
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Título</mat-label>
+                            <input type="titleLogoWeb" matInput formControlName="titleLogoWeb" placeholder="">
+                            <mat-error *ngIf="formy.get('titleLogoWeb').hasError('required')">
+                                Campo es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Descripcion</mat-label>
+                            <input type="descriptionLogoWeb" matInput formControlName="descriptionLogoWeb" placeholder="">
+                            <mat-error *ngIf="formy.get('descriptionLogoWeb').hasError('required')">
+                                Campo es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </div> 
+                </div>
+
+                <div fxFlex.gt-md="49" fxFlex="100">
+                    <h4>Datos Logo 2</h4>
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Título</mat-label>
+                            <input type="titleLogoMobil" matInput formControlName="titleLogoMobil" placeholder="">
+                            <mat-error *ngIf="formy.get('titleLogoMobil').hasError('required')">
+                                Campo es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Descripcion</mat-label>
+                            <input type="descriptionLogoMobile" matInput formControlName="descriptionLogoMobile" placeholder="">
+                            <mat-error *ngIf="formy.get('descriptionLogoMobile').hasError('required')">
+                                Campo es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </div> 
+                </div>
+
+            </div>
+
+
+            <div style="text-align: end;" class="m-t-20">
+                <button [disabled]="!cambiosRealizados" (click)="onSubmited()" mat-raised-button mat-button color="primary">Guardar cambios</button>
+            </div>   
+
+        </form>   
+    </mat-card-content>
+</mat-card>

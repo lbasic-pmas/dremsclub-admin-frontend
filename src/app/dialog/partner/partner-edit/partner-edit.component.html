@@ -1,0 +1,174 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>Editar Partner</mat-card-title>
+    </mat-card-header>
+
+    <mat-tab-group>
+        <mat-tab label="Datos Partner">
+            <mat-card-content>
+                <div class="avatar">
+                    <img [src]="partner.avatar" *ngIf="partner.avatar !== null" alt="">
+                    <div class="btnEdit" (click)="editAvatar()">
+                        <mat-icon mat-list-icon>mode_edit</mat-icon>
+                    </div>
+                </div>
+                <form [formGroup]="formy" (ngSubmit)="send( formy )">
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput formControlName="name">
+                            <mat-error *ngIf="formy.controls['name'].hasError('required') && formy.controls['name'].touched">
+                                Campo es requerido
+                            </mat-error>
+                            <mat-error *ngIf="formy.controls['name'].hasError('minlength') && formy.controls['name'].touched">
+                                Mínimo de 3 caracteres
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+            
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput formControlName="lastName">
+                            <mat-error *ngIf="formy.controls['lastName'].hasError('required') && formy.controls['lastName'].touched">
+                                Campo es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+            
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Correo</mat-label>
+                            <input matInput type="email" formControlName="email" />
+                            <mat-error *ngIf="formy.controls['email'].hasError('required') && formy.controls['email'].touched">
+                                Campo es requerido.
+                            </mat-error>
+                            <mat-error *ngIf="formy.controls['email'].hasError('email') && formy.controls['email'].touched">
+                                Email no válido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+            
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password" formControlName="password">
+                            <mat-error *ngIf="formy.controls['password'].hasError('required') && formy.controls['password'].touched">
+                                Campo es requerido.
+                            </mat-error>
+                            <mat-error *ngIf="formy.controls['password'].hasError('minlength') && formy.controls['password'].touched">
+                                Mínimo de 6 caracteres
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+            
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Código País</mat-label>
+                            <mat-select formControlName="codeCountry" placeholder="Seleccione">
+                                <mat-option *ngFor="let code of listCodeCountry" [value]="code">
+                                    {{ code }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formy.controls['codeCountry'].hasError('required') && formy.controls['codeCountry'].touched">
+                                Campo es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+            
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput formControlName="phone">
+                            <mat-error *ngIf="formy.controls['phone'].hasError('required') && formy.controls['phone'].touched">
+                                Campo es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+            
+                    <div class="mb-input">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Descripción</mat-label>
+                            <textarea rows="4" matInput formControlName="description"></textarea>
+                            <mat-error *ngIf="formy.controls['description'].hasError('required') && formy.controls['description'].touched">
+                                Campo es requerido.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <mat-dialog-actions align="end">
+                        <button mat-raised-button mat-dialog-close>Cancelar</button>
+                        <button color="primary" mat-raised-button type="submit" [disabled]="!formy.valid">Editar</button>
+                    </mat-dialog-actions>
+                </form>
+            </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Datos Bancarios">
+            <mat-card-content>
+                <div class="cuentas">
+                    <div class="cuenta" *ngFor="let item of accounts" [ngClass]="{ 'active' : item.status }">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                            <div class="colum" fxFlex.gt-md="49"
+                                fxFlex.gt-xs="100"
+                                fxFlex="49">
+                                <div class="label">Banco</div>
+                                <div class="txt">{{ item.name_bank }}</div>
+                            </div>
+                            <div class="colum" fxFlex.gt-md="49"
+                                fxFlex.gt-xs="100"
+                                fxFlex="49">
+                                <div class="label">Tipo Cuenta</div>
+                                <div class="txt">{{ item.type_account }}</div>
+                            </div>
+
+                            <div class="colum" fxFlex.gt-md="49"
+                                fxFlex.gt-xs="100"
+                                fxFlex="49">
+                                <div class="label">N° Cuenta</div>
+                                <div class="txt">{{ item.number_account }}</div>
+                            </div>
+                            <div class="colum" fxFlex.gt-md="49"
+                                fxFlex.gt-xs="100"
+                                fxFlex="49">
+                                <div class="label">Nombre</div>
+                                <div class="txt">{{ item.name_account }}</div>
+                            </div>
+                            
+                            <div class="colum" fxFlex.gt-md="49"
+                                fxFlex.gt-xs="100"
+                                fxFlex="49">
+                                <div class="label">Rut</div>
+                                <div class="txt">{{ item.rut_account }}</div>
+                            </div>
+
+                            <div class="colum acciones" fxFlex.gt-md="49"
+                                fxFlex.gt-xs="100"
+                                fxFlex="49">
+                                <button class="iconAction btnEdit" (click)="edit( item )" title="Editar">
+                                    <mat-icon mat-list-icon>mode_edit</mat-icon>
+                                </button>
+                                <button class="iconAction btnDelete" (click)="delete( item )" title="Eliminar" *ngIf="(accounts.length > 1 && !item.status) || accounts.length === 1">
+                                    <mat-icon mat-list-icon>delete</mat-icon>
+                                  </button>
+                                <button class="iconAction" (click)="principal( item )" title="Principal" [ngClass]="{ 'btnTrypo' : item.status }">
+                                    <mat-icon mat-list-icon>{{ item.status ? 'star' : 'star_border' }}</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cuenta" *ngIf="accounts.length === 0">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                            <div class="colum" fxFlex="100">
+                                <div class="txt">No hay cuentas registradas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <mat-dialog-actions align="end">
+                    <button mat-raised-button mat-dialog-close>Cerrar</button>
+                    <button mat-raised-button color="primary" type="button" (click)="addAccount()">Nueva Cuenta</button>
+                </mat-dialog-actions>
+            </mat-card-content>
+        </mat-tab>
+    </mat-tab-group>
+</mat-card>

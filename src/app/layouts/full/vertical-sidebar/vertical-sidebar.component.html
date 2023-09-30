@@ -1,0 +1,45 @@
+<!-- ============================================================== -->
+<!-- sidebar -->
+<!-- ============================================================== -->
+<div class="user-profile" >
+  <!-- User profile image -->
+  <div class="profile-img">
+    <img [src]="user.AVATAR" alt="user" (click)="handleNotify()" />
+  </div>
+  
+</div>
+
+<mat-nav-list appAccordion>
+  <mat-list-item appAccordionLink routerLinkActive="selected" (click)="scrollToTop()" >
+    <a class="" routerLink="/pages/dashboard" (click)="handleNotify()">
+      <mat-icon>assessment</mat-icon>
+      <span>Dashboard</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+
+  <mat-list-item appAccordionLink routerLinkActive="selected"  (click)="scrollToTop()" >
+    <a class="" routerLink="/pages/dreamsPages" (click)="handleNotify()">
+      <mat-icon>filter_1</mat-icon>
+      <span>Paginas</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+
+  <mat-list-item appAccordionLink routerLinkActive="selected"  (click)="scrollToTop()" >
+    <a class="" routerLink="/pages/config" (click)="handleNotify()">
+      <mat-icon>settings</mat-icon>
+      <span>Configuracion</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+
+  <mat-list-item appAccordionLink routerLinkActive="selected"  (click)="scrollToTop()" >
+    <a class="" routerLink="/pages/profile" (click)="handleNotify()">
+      <mat-icon>perm_identity</mat-icon>
+      <span>Perfil</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+
+</mat-nav-list>

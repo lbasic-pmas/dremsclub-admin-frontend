@@ -1,0 +1,28 @@
+version: 0.2
+
+env:
+  variables:
+    CACHE_CONTROL: "86400"
+    S3_BUCKET: "{{s3_bucket_url}}"
+    BUILD_FOLDER: "dist"
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install --legacy-peer-deps
+      - npm install --location=global @angular/cli
+  build:
+    commands:
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
+      - echo Generate env started
+      - echo $URL_API
+      - echo $ENVIRONMENT
+      - npm run gen-env
+      - echo Build started
+      - ng build
+artifacts:
+  files:
+    - '**/*'
+  base-directory: 'dist*'

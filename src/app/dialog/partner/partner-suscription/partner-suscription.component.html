@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>{{ dataDialog ? 'Subscripción' : 'Renovar Subscripción' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>{{ dataDialog ? 'Proceso de suscripción' : 'Renovando suscripción' }}</p>
+
+
+        <div class="formasPago">
+            <div class="pago" [ngClass]="{'active': formaPago === 'mercadoPago' }" (click)="seleccionarPago( 'mercadoPago' )">
+                <img src="./assets/images/mercadoPago.png" alt="">
+            </div>
+
+            <div class="pago" [ngClass]="{'active': formaPago === 'transbank' }" (click)="seleccionarPago( 'transbank' )">
+                <img src="./assets/images/transbank.png" alt="">
+            </div>
+        </div>
+    </mat-card-content>
+
+    <div *ngIf="processTbk">
+        <form #formTBK [action]="tbkData.url" method="post" name="tokenForm">
+            <input type="hidden" name="TBK_TOKEN" [value]="tbkData.token" />
+        </form>
+    </div>
+
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>Cerrar</button>
+        <button mat-raised-button color="primary" type="button" (click)="pagar()">{{ dataDialog ? 'Suscribirme' : 'Renovar' }}</button>
+    </mat-dialog-actions>
+</mat-card>

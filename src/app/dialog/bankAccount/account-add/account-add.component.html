@@ -1,0 +1,72 @@
+<mat-card>
+    <mat-card-header class="course-header">
+        <mat-card-title>Nueva Cuenta</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="formy" (ngSubmit)="send( formy )">
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Banco</mat-label>
+                <mat-select formControlName="bank" placeholder="Seleccione">
+                    <mat-option *ngFor="let bank of listBanks" [value]="bank">
+                        {{ bank.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formy.controls['bank'].hasError('required') && formy.controls['bank'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo Cuenta</mat-label>
+                <mat-select formControlName="type" placeholder="Seleccione">
+                    <mat-option *ngFor="let type of types" [value]="type">
+                        {{ type.name }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formy.controls['type'].hasError('required') && formy.controls['type'].touched">
+                    Campo es requerido.
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Número de Cuenta</mat-label>
+                <input matInput formControlName="number">
+                <mat-error *ngIf="formy.controls['number'].hasError('required') && formy.controls['number'].touched">
+                    Campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngIf="formy.controls['name'].hasError('required') && formy.controls['name'].touched">
+                    Campo es requerido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mb-input">
+            <mat-form-field appearance="outline">
+                <mat-label>Rut</mat-label>
+                <input matInput formControlName="rut" (focusout)="formateoRut( inputRut )" #inputRut (keyup)="validoRut( inputRut )">
+                <mat-error *ngIf="formy.controls['rut'].hasError('required') && formy.controls['rut'].touched">
+                    Campo es requerido
+                </mat-error>
+                <mat-error *ngIf="formy.controls['rut'].hasError('novalid') && formy.controls['rut'].touched">
+                    Rut no válido
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-dialog-actions align="end">
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
+            <button color="primary" mat-raised-button type="submit" [disabled]="!formy.valid">Agregar</button>
+        </mat-dialog-actions>
+    </form>
+</mat-card>

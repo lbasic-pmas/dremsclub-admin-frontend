@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-content>
+    <div class="search">
+      <mat-form-field >
+        <input
+          matInput
+          type="text"
+          class="form-control"
+          placeholder="Filtrar por..."
+          (keyup)="updateFilter($event)"
+        />
+      </mat-form-field>
+    </div>
+    <ngx-datatable
+      #table
+      class="material"
+      [columns]="columns"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="'auto'"
+      [limit]="10"
+      [rows]="rows"
+    >
+    </ngx-datatable>
+  </mat-card-content>
+</mat-card>

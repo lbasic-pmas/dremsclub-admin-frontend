@@ -1,0 +1,9 @@
+<div class="version">
+    <div class="pestana" (click)="activar()">
+        STAGING
+    </div>
+    <div class="texto" [ngClass]="{'active': active}">
+        <p><b>Last commit: </b> <a [href]="lastCommitUrl" target="_blank">{{ lastCommitLabel }}</a></p>
+        <p><b>Last deploy: </b> {{ textoDeploy }}</p>
+    </div>
+</div>

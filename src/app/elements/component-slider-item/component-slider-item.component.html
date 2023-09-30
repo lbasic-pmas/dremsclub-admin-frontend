@@ -1,0 +1,68 @@
+<div class="sliderItem">
+    <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+        <div fxFlex.gt-md="49" fxFlex="100">
+            <div class="containerImagenes">
+                <div class="imgDescktop">
+                    <h4>Imagen Descktop</h4>
+                    <img class="" [src]="imageDesktop" alt="">    
+                    <div class="m-t-20">
+                        <button (click)="addImageDescktop()" mat-raised-button mat-button color="primary">Agregar</button>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+
+        <div fxFlex.gt-md="49" fxFlex="100">
+            <div class="containerImagenes">
+                <div class="imgDescktop">
+                    <h4>Imagen Mobile</h4>
+                    <img class="" [src]="imageMobile" alt="">    
+                    <div class="m-t-20">
+                        <button (click)="addImageMobile()" mat-raised-button mat-button color="primary">Agregar</button>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+
+        <div fxFlex="100">
+            <form [formGroup]="formy"  >
+                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div  fxFlex.gt-md="49" fxFlex="100">
+                        <h4>Titulo</h4>
+                        <div style="height: 100px; margin-bottom: 32px;">
+                            <quill-editor formControlName="title" [modules]="modulesQuill" >
+                              </quill-editor>
+                        </div>
+
+                    </div>
+    
+                    <div fxFlex.gt-md="49"  fxFlex="100">
+                        <h4>Subtítulo</h4>
+                        <div style="height: 100px; margin-bottom: 32px;">
+                            <quill-editor formControlName="subTitle" [modules]="modulesQuill" >
+                              </quill-editor>
+                        </div>
+                    </div>
+    
+    
+                    <div  fxFlex.gt-md="49" fxFlex="100">
+                        <h4>Descripcion</h4>
+                        <div style="height: 100px; margin-bottom: 32px;">
+                            <quill-editor formControlName="description" [modules]="modulesQuill" >
+                              </quill-editor>
+                        </div>
+                    </div>
+    
+                </div>
+    
+            </form>   
+            <div style="text-align: end;" class="m-t-20">
+                <button [disabled]="!cambiosRealizados" (click)="onSubmited()" type="button"  mat-raised-button mat-button color="primary">Guardar cambios</button>
+                <button type="button" style="margin-left: 8px;" (click)="deleteSlider()" mat-raised-button mat-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>   
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-content>
+        <h2>Elemento destacados</h2>
+
+        <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+            <div fxFlex.gt-md="49" fxFlex="100">
+                <div class="containerImagenes">
+                    <div class="imgDescktop">
+                        <h4>Background</h4>
+                        <img class="" [src]="imageBackground" alt="">    
+                        <div class="m-t-20">
+                            <button (click)="addImagebackground()" mat-raised-button mat-button color="primary">Agregar</button>
+                        </div>                 
+                    </div>
+                </div>
+            </div>
+            <div fxFlex.gt-md="49" fxFlex="100">
+                <form [formGroup]="formy"  >
+                    <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                        <div  fxFlex.gt-md="49" fxFlex="100">
+                            <h4>Titulo</h4>
+                            <div style="height: 100px; margin-bottom: 32px;">
+                                <quill-editor formControlName="title" [modules]="modulesQuill" >
+                                  </quill-editor>
+                            </div>
+    
+                        </div>
+        
+                        <div fxFlex.gt-md="49"  fxFlex="100">
+                            <h4>Subtítulo</h4>
+                            <div style="height: 100px; margin-bottom: 32px;">
+                                <quill-editor formControlName="subTitle" [modules]="modulesQuill" >
+                                  </quill-editor>
+                            </div>
+                        </div>
+                    </div>
+                </form>   
+            </div>
+        </div>
+
+        <ng-container *ngFor="let item of elementos; let i=index">
+            <app-component-featured (dataEvent)="handleDataCards($event, i)" [data]="item"></app-component-featured>
+        </ng-container>
+        
+        
+
+        
+        <div class="m-t-20" style="text-align: end;">
+            <button (click)="addElement()" mat-raised-button mat-button color="primary">Agregar nuevo elemento</button>
+            <button style="margin-left: 8px;" (click)="deleteElement()" mat-raised-button mat-button color="warn">Eliminar</button>
+        </div> 
+
+    </mat-card-content>
+</mat-card>

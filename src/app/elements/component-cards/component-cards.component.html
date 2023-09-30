@@ -1,0 +1,98 @@
+<div class="sliderItem">
+    <div class="m-b-20" fxLayout="row wrap" fxLayoutAlign="space-between">
+        <div fxFlex.gt-md="49" fxFlex="100">
+            <div class="containerImagenes">
+                <div class="imgDescktop">
+                    <h4>Background</h4>
+                    <img class="" [src]="imageBackground" alt="">    
+                    <div class="m-t-20">
+                        <button (click)="addImagebackground()" mat-raised-button mat-button color="primary">Agregar</button>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+
+        <div fxFlex.gt-md="49" fxFlex="100">
+            <div class="containerImagenes">
+                <div class="imgDescktop">
+                    <h4>Icono</h4>
+                    <img class="" [src]="icon" alt="">    
+                    <div class="m-t-20">
+                        <button (click)="addIcon()"  mat-raised-button mat-button color="primary">Agregar</button>
+                    </div>                 
+                </div>
+            </div>
+        </div>
+
+        <div fxFlex="100">
+            <form [formGroup]="formy"  >
+                <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                    <div  fxFlex.gt-md="49" fxFlex="100">
+                        <h4>Titulo</h4>
+                        <div style="height: 100px; margin-bottom: 32px;">
+                            <quill-editor formControlName="title" [modules]="modulesQuill" >
+                              </quill-editor>
+                        </div>
+
+                    </div>
+    
+                    <div fxFlex.gt-md="49"  fxFlex="100">
+                        <h4>Subtítulo</h4>
+                        <div style="height: 100px; margin-bottom: 32px;">
+                            <quill-editor formControlName="subTitle" [modules]="modulesQuill" >
+                              </quill-editor>
+                        </div>
+                    </div>
+    
+    
+                    <div  fxFlex.gt-md="49" fxFlex="100">
+                        <h4>Boton</h4>
+                        <div style="height: 100px; margin-bottom: 32px;">
+                            <quill-editor formControlName="buttonTitle" [modules]="modulesQuill" >
+                              </quill-editor>
+                        </div>
+                    </div>
+
+                    <div  fxFlex.gt-md="49" fxFlex="100">
+                        <h4>Url Boton</h4>
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                              <mat-label>Url</mat-label>
+                              <input matInput placeholder="Url" formControlName="urlButton" />
+                            </mat-form-field>
+                          </div>
+                    </div>
+
+
+                    <div  fxFlex.gt-md="49" fxFlex="100">
+                        <h4>Ancho de la tarjeta </h4>
+                        <div class="mb-input">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Columnas</mat-label>
+                                <mat-select formControlName="col">
+                                  <mat-option *ngFor="let value of cols" [value]="value">
+                                    {{value}}
+                                  </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <h4>Actibar Boton</h4>
+                        <p><mat-checkbox formControlName="btnActive">Activo</mat-checkbox></p>
+
+                    </div>
+
+    
+                </div>
+    
+            </form>   
+            <div style="text-align: end;" class="m-t-20">
+                <button [disabled]="!cambiosRealizados" (click)="onSubmited()" type="button"  mat-raised-button mat-button color="primary">Guardar cambios</button>
+                <button type="button" style="margin-left: 8px;" (click)="deleteCard()" mat-raised-button mat-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>   
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+<mat-card>
+    <h2>Generado de imagen</h2>
+    <div class="imageCurrent" *ngIf="imageChangedEvent === ''">
+        <h3>Imagen Actual</h3>
+
+        <img [src]="imagen" (click)="fileInput.click()">
+    </div>
+    <div class="images" *ngIf="imageChangedEvent !== ''">
+
+        <div class="contImages" *ngIf="state === 1">
+            <div class="image imageOrigin">
+                <h3>Imagen Desktop</h3>
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="2.40"
+                    [resizeToWidth]="600"
+                    format="jpg"
+                    (imageCropped)="imageCropped($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+            </div>
+            <div class="image imageResult">
+                <h3>Imagen Final</h3>
+                <img [src]="croppedImage" />
+            </div>
+        </div>
+
+        <div class="contImages" *ngIf="state === 2">
+            <div class="image imageOrigin">
+                <h3>Imagen Mobile</h3>
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]="1.33"
+                    [resizeToWidth]="600"
+                    format="jpg"
+                    (imageCropped)="imageCroppedMobile($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+            </div>
+            <div class="image imageResult">
+                <h3>Imagen Final</h3>
+                <img [src]="croppedImageMobile" />
+            </div>
+        </div>
+
+        <div class="contImages" *ngIf="state === 3">
+            <div class="image imageOrigin">
+                <h3>Imagen Seccion</h3>
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]=" 0.719"
+                    [resizeToWidth]="600"
+                    format="jpg"
+                    (imageCropped)="imageCroppedSection($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+            </div>
+            <div class="image imageResult">
+                <h3>Imagen Final</h3>
+                <img [src]="croppedImageSection" />
+            </div>
+        </div>
+
+        <div class="contImages" *ngIf="state === 4">
+            <div class="image imageOrigin">
+                <h3>Imagen Seccion</h3>
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]=" 0.719"
+                    [resizeToWidth]="600"
+                    format="jpg"
+                    (imageCropped)="imageCroppedBackground($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+            </div>
+            <div class="image imageResult">
+                <h3>Imagen Final</h3>
+                <img [src]="croppedImageBackground" />
+            </div>
+        </div>
+
+        <div class="contImages" *ngIf="state === 5">
+            <div class="image imageOrigin">
+                <h3>Imagen Seccion</h3>
+                <image-cropper
+                    [imageChangedEvent]="imageChangedEvent"
+                    [maintainAspectRatio]="true"
+                    [aspectRatio]=" 1"
+                    [resizeToWidth]="600"
+                    format="png"
+                    (imageCropped)="imageCroppedIcon($event)"
+                    (imageLoaded)="imageLoaded()"
+                    (cropperReady)="cropperReady()"
+                    (loadImageFailed)="loadImageFailed()"
+                ></image-cropper>
+            </div>
+            <div class="image imageResult">
+                <h3>Imagen Final</h3>
+                <img [src]="croppedImageIcon" />
+            </div>
+        </div>
+    </div>
+    <input hidden type="file" #fileInput (change)="fileChangeEvent($event)" accept=".jpg , .jpeg, .png , .gif, .bmp" />
+
+    <div class="conButton">
+        <button type="button" mat-raised-button mat-dialog-close class="mr-2">Cancelar</button>
+        <button type="button" mat-raised-button class="mr-2" (click)="fileInput.click()">Cambiar imagen</button>
+        <button type="button" mat-raised-button color="primary" *ngIf="croppedImage !== ''" [disabled]="croppedImage === ''" (click)="confirmar()">Agregar</button>
+        <button type="button" mat-raised-button color="primary" *ngIf="croppedImageMobile !== ''" [disabled]="croppedImageMobile === ''" (click)="confirmar()">Agregar</button>
+        <button type="button" mat-raised-button color="primary" *ngIf="croppedImageSection !== ''" [disabled]="croppedImageSection === ''" (click)="confirmar()">Agregar</button>
+        <button type="button" mat-raised-button color="primary" *ngIf="croppedImageIcon !== ''" [disabled]="croppedImageIcon === ''" (click)="confirmar()">Agregar</button>
+        <button type="button" mat-raised-button color="primary" *ngIf="croppedImageBackground !== ''" [disabled]="croppedImageBackground === ''" (click)="confirmar()">Agregar</button>
+    </div>
+</mat-card>
